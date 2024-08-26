@@ -1,3 +1,5 @@
+#!/bin/bash
+
 trap 'kill $(jobs -p)' EXIT SIGINT SIGTERM
 
 cd backend
