@@ -1,27 +1,40 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { TransactionCategory } from '../models/transaction-category.enum';
+import { TransactionService } from '../services/transaction.service';
 
 @Component({
   selector: 'transaction-form',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './transaction-form.component.html',
-  styleUrl: './transaction-form.component.css'
+  styleUrl: './transaction-form.component.css',
+  providers: [TransactionService]
 })
 export class TransactionFormComponent {
+  constructor(private _transactionService: TransactionService) {}
 
   transactionCategories = Object.values(TransactionCategory);
 
-  transactionFrom = new FormGroup({
-    name: new FormControl<string>(''),
-    amount: new FormControl<Number | null>(null),
-    category: new FormControl<string>(''),
-    date: new FormControl<Date>(new Date())
+  categoryValidator(control: AbstractControl): ValidationErrors | null {
+    if (control.value != '' && !this.transactionCategories.includes(control.value)) {
+      return { invalidCategory: true };
+    }
+    return null;
+  }
+
+  transactionForm = new FormGroup({
+    name: new FormControl<string>('', Validators.required),
+    amount: new FormControl<number | null>(null, Validators.required),
+    category: new FormControl<string>('', [Validators.required, this.categoryValidator]),
+    date: new FormControl<Date | null>(null, Validators.required)
   });
 
   onFormSubmit() {
-    console.log(this.transactionFrom.value);
-    this.transactionFrom.reset();
+    this._transactionService.postFormData(this.transactionForm.value).subscribe({
+      next: (response) => console.log("Successfully posted form data!", response),
+      error: (error) => console.error("Failed to post form", error)
+    });
+    this.transactionForm.reset();
   }
 }

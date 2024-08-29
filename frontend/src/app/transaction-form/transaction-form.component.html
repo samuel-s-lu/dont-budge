@@ -1,13 +1,16 @@
-<form (ngSubmit)="onFormSubmit()" [formGroup]="transactionFrom">
-  <h2>Add a new entry!</h2>
-  <input type="text" placeholder="Name" required formControlName="name">
-  <input type="number" placeholder="Amount" required step="0.01" formControlName="amount">
-  <input list="categories" placeholder="Category" required formControlName="category">
+<form (ngSubmit)="onFormSubmit()" [formGroup]="transactionForm">
+  <h2 id="category-selection">Add a new entry!</h2>
+  <input type="text" placeholder="Name" formControlName="name">
+  <input type="number" placeholder="Amount" step="0.01" formControlName="amount">
+  <input list="categories" placeholder="Category" formControlName="category">
   <datalist id="categories">
     @for (category of transactionCategories; track $index) {
-      <option value={{category}}>
+      <option>{{category}}</option>
     }
   </datalist>
+  @if (transactionForm.controls.category.dirty && transactionForm.controls.category.invalid) {
+    <div>invalid category selected</div>
+  }
   <input type="date" formControlName="date">
-  <button type="submit">Add</button>
+  <button type="submit" [disabled]="transactionForm.invalid">Add</button>
 </form>

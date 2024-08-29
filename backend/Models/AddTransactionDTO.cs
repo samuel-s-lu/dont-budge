@@ -5,8 +5,6 @@ namespace backend.Models
         public required string Name { get; set; }
         public required decimal Amount { get; set; }
         public required string Category { get; set; }
-        public required int Year { get; set; }
-        public required int Month { get; set; }
-        public required int Day { get; set; }
+        public required string Date { get; set; } // yyyy-mm-dd
     }
 }

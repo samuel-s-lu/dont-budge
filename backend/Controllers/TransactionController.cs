@@ -38,12 +38,17 @@ namespace backend.Controllers
 
         [HttpPost]
         public IActionResult AddTransaction(AddTransactionDTO request) {
+            string[] date = request.Date.Split('-');
+            int year = Int32.Parse(date[0]);
+            int month = Int32.Parse(date[1]);
+            int day = Int32.Parse(date[2]);
+
             var transaction = new Transaction{
                 Id = Guid.NewGuid(),
                 Name = request.Name,
                 Amount = request.Amount,
                 Category = EnumExtensions.StrToEnum(request.Category),
-                Date = new DateOnly(request.Year, request.Month, request.Day)
+                Date = new DateOnly(year, month, day)
             };
 
             _dbContext.Transactions.Add(transaction);
