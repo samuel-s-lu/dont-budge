@@ -11,8 +11,7 @@ namespace backend.Data
     {
         public DontBudgeDbContext(DbContextOptions<DontBudgeDbContext> options)
             : base(options)
-        {
-        }
+        {}
 
         public DbSet<Transaction> Transactions { get; set; } = null!;
     }

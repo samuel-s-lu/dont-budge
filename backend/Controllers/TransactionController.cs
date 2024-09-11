@@ -39,9 +39,9 @@ namespace backend.Controllers
         [HttpPost]
         public IActionResult AddTransaction(AddTransactionDTO request) {
             string[] date = request.Date.Split('-');
-            int year = Int32.Parse(date[0]);
-            int month = Int32.Parse(date[1]);
-            int day = Int32.Parse(date[2]);
+            int year = int.Parse(date[0]);
+            int month = int.Parse(date[1]);
+            int day = int.Parse(date[2]);
 
             var transaction = new Transaction{
                 Id = Guid.NewGuid(),
