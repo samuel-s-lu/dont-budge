@@ -1,0 +1,11 @@
+<h2>Transaction history</h2>
+@if (transactionHistory$ | async;as transactionHistory) {
+  @if (transactionHistory.length > 0) {
+    @for (transaction of transactionHistory; track $index) {
+      <p>{{transaction.name}}</p>
+    }
+  }
+  @else {
+    <p>No transaction history found</p>
+  }
+}

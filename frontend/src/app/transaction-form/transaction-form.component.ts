@@ -8,8 +8,7 @@ import { TransactionService } from '../services/transaction.service';
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './transaction-form.component.html',
-  styleUrl: './transaction-form.component.css',
-  providers: [TransactionService]
+  styleUrl: './transaction-form.component.css'
 })
 export class TransactionFormComponent {
   constructor(private _transactionService: TransactionService) {}
@@ -26,15 +25,19 @@ export class TransactionFormComponent {
   transactionForm = new FormGroup({
     name: new FormControl<string>('', Validators.required),
     amount: new FormControl<number | null>(null, Validators.required),
-    category: new FormControl<string>('', [Validators.required, this.categoryValidator]),
+    category: new FormControl<string>('', [Validators.required, this.categoryValidator.bind(this)]),
     date: new FormControl<Date | null>(null, Validators.required)
   });
 
-  onFormSubmit() {
-    this._transactionService.postFormData(this.transactionForm.value).subscribe({
-      next: (response) => console.log("Successfully posted form data!", response),
-      error: (error) => console.error("Failed to post form", error)
-    });
-    this.transactionForm.reset();
+  onFormSubmit(): void {
+    if (this.transactionForm.valid) {
+      this._transactionService.postFormData(this.transactionForm.value).subscribe({
+        next: (response) => {
+          console.log("Successfully posted form data!", response)
+        },
+        error: (error) => console.error("Failed to post form", error)
+      });
+      this.transactionForm.reset();
+    }
   }
 }
