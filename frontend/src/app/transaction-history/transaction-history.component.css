@@ -1,0 +1,14 @@
+#transaction-history-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* gap: 10px; */
+}
+.header {
+    display: contents;
+}
+.header span {
+    padding: 10px;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ddd;
+}

@@ -1,9 +1,17 @@
 <h2>Transaction history</h2>
 @if (transactionHistory$ | async;as transactionHistory) {
   @if (transactionHistory.length > 0) {
-    @for (transaction of transactionHistory; track $index) {
-      <p>{{transaction.name}}</p>
-    }
+    <div id="transaction-history-container">
+      <div class="header">
+        <span>Date</span>
+        <span>Name</span>
+        <span>Category</span>
+        <span>Amount</span>
+      </div>
+      @for (transaction of transactionHistory; track $index) {
+        <transaction-history-row [transaction]="transaction"></transaction-history-row>
+      }
+    </div>
   }
   @else {
     <p>No transaction history found</p>
