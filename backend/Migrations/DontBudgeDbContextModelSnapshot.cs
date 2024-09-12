@@ -22,6 +22,40 @@ namespace backend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("backend.Models.Budget", b =>
+                {
+                    b.Property<int>("Income")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Income"));
+
+                    b.Property<int>("Education")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Entertainment")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Family")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Groceries")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Health")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Housing")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Miscellaneous")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Income");
+
+                    b.ToTable("Budget");
+                });
+
             modelBuilder.Entity("backend.Models.Transaction", b =>
                 {
                     b.Property<Guid>("Id")

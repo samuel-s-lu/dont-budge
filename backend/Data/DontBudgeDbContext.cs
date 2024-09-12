@@ -14,5 +14,6 @@ namespace backend.Data
         {}
 
         public DbSet<Transaction> Transactions { get; set; } = null!;
+        public DbSet<Budget> Budget { get; set; } = null!;
     }
 }
