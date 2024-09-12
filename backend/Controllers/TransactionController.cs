@@ -6,6 +6,7 @@ using backend.Data;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.HttpSys;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -55,6 +56,19 @@ namespace backend.Controllers
             _dbContext.SaveChanges();
 
             return Ok(transaction);
+        }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public IActionResult DeleteTransaction(Guid id) {
+            var transaction = _dbContext.Transactions.Find(id);
+
+            if (transaction is not null) {
+                _dbContext.Transactions.Remove(transaction);
+                _dbContext.SaveChanges();
+            }
+
+            return Ok();
         }
     }
 }

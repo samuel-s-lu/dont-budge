@@ -8,9 +8,6 @@
       <option>{{category}}</option>
     }
   </datalist>
-  @if (transactionForm.controls.category.dirty && transactionForm.controls.category.invalid) {
-    <div>invalid category selected</div>
-  }
   <input type="date" formControlName="date">
   <button type="submit" [disabled]="transactionForm.invalid">Add</button>
 </form>

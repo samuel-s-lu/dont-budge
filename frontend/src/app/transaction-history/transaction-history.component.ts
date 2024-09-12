@@ -23,4 +23,14 @@ export class TransactionHistoryComponent implements OnInit{
       transactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     )
   );
+
+  deleteTransaction(id: string): void {
+    this._transactionService.deleteTransaction(id).subscribe({
+      next: () => {
+        console.log(`Transaction ${id} deleted successfully`);
+        // this._transactionService.setTransactions(); // Refresh the list
+      },
+      error: (error) => console.error(`Error deleting transaction ${id}`, error)
+    });
+  }
 }

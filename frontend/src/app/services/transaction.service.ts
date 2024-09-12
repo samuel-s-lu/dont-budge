@@ -33,4 +33,12 @@ export class TransactionService {
       })
     );
   }
+
+  deleteTransaction(id: string): Observable<any> {
+    return this._http.delete(`${this._ApiURL}/${id}`).pipe(
+      tap(() => {
+        this.setTransactions();
+      })
+    );
+  }
 }

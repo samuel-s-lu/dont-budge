@@ -1,14 +1,46 @@
+#root-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#root-container > * {
+    min-width: 80%;
+    align-self: center;
+}
+
 #transaction-history-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    /* gap: 10px; */
+    grid-template-columns: 1fr 0.5fr 0.5fr 0.25fr 0.1fr;
 }
+
 .header {
     display: contents;
 }
+
 .header span {
     padding: 10px;
     font-weight: bold;
     background-color: #f0f0f0;
-    border-bottom: 2px solid #ddd;
 }
+
+transaction-history-row:hover + .trash-icon-container > .trash-icon,
+.trash-icon-container:hover > .trash-icon,
+.trash-icon:hover{
+    opacity: 1;
+}
+
+.trash-icon-container {
+    align-self: center;
+    justify-self: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.trash-icon {
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* transaction-history-row:hover {
+
+} */
