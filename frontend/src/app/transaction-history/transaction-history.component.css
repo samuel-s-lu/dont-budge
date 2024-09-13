@@ -30,8 +30,8 @@ transaction-history-row:hover + .trash-icon-container > .trash-icon,
 }
 
 .trash-icon-container {
-    align-self: center;
-    justify-self: center;
+    display: flex;
+    justify-content: end;
     padding: 10px;
     border-bottom: 1px solid #eee;
 }
@@ -40,7 +40,3 @@ transaction-history-row:hover + .trash-icon-container > .trash-icon,
     opacity: 0;
     cursor: pointer;
 }
-
-/* transaction-history-row:hover {
-
-} */

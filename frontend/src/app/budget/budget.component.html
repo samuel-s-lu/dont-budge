@@ -1,0 +1,38 @@
+<form id="root-container" [formGroup]="budgetForm">
+  <h2>Budget</h2>
+  <div id="budget-container">
+    @if (budgets$ | async; as budgets) {
+      @for (category of categories; track category) {
+        <div class="budget-category-container">
+          <label>{{ category }}</label>
+          @if (isEditing) {
+            <input 
+              type="number"
+              step="100"
+              class="budget-number-area"
+              min="0"
+              [value]="budgets.length > 0 ? (budgets[0][category]) : 0"
+              [formControlName]="category"
+            >
+          }
+          @else {
+            <p class="budget-number-area">{{ budgets.length > 0 ? (budgets[0][category] | currency) : 'N/A' }}</p>
+          }
+        </div>
+      }
+    } @else {
+      <p>Loading budgets...</p>
+    }
+  </div>
+  @if (!isEditing) {
+    <div>
+      <button (click)="onEditButtonClick()">✏️</button>
+    </div>
+  }
+  @else {
+    <div id="return-checkmark-buttons">
+      <button id="return-button" (click)="onReturnButtonClick()">↩️</button>
+      <button type="submit" id="checkmark-button" (click)="onFormSubmit()">✅</button>
+    </div>
+  }
+</form>

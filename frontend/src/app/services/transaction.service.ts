@@ -12,9 +12,7 @@ export class TransactionService {
   private _transactions = new BehaviorSubject<Transaction[]>([]);
   transactions$ = this._transactions.asObservable();
 
-  constructor(private _http: HttpClient) {
-    this.setTransactions;
-  }
+  constructor(private _http: HttpClient) {}
 
   getTransactions(): Observable<Transaction[]> {
     return this.transactions$;

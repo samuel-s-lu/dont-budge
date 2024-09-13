@@ -1,0 +1,51 @@
+#root-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#root-container > * {
+    min-width: 80%;
+    align-self: center;
+}
+
+#budget-container {
+    max-width: 80%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.budget-category-container {
+    padding: 0.5rem 1.5rem;
+}
+
+.budget-number-area {
+    display: block;
+    width: 5rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+input {
+    border-style: hidden;
+}
+
+button {
+    cursor: pointer;
+    border-style: hidden;
+    background-color: white;
+    font-size: 1.2rem;
+}
+
+#return-checkmark-buttons {
+    display: inline;
+}
+
+#return-button {
+    margin-right: 1rem;
+}
+
+input {
+    width: 5rem;
+    font-size: 1rem;
+}
