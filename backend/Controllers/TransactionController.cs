@@ -21,14 +21,27 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllTransactions() {
-            var transactions = _dbContext.Transactions
+        public IActionResult GetTransactions([FromQuery] int? year, [FromQuery] int? month, [FromQuery] string? category) {
+            var query = _dbContext.Transactions.AsQueryable();
+            
+            if (year.HasValue) {
+                query = query.Where(t => t.Date.Year == year.Value);
+            }
+            if (month.HasValue) {
+                query = query.Where(t => t.Date.Month == month.Value);
+            }
+            if (!string.IsNullOrEmpty(category)) {
+                query = query.Where(t => t.Category == EnumExtensions.StrToEnum(category));
+            }
+
+            var transactions = query
+                .OrderByDescending(t => t.Date)
                 .Select(t => new
                     {
                         t.Id,
                         t.Name,
                         t.Amount,
-                        Category = t.Category.ToString(),
+                        Category = t.Category.ToString().ToLower(),
                         t.Date
                     }
                 )

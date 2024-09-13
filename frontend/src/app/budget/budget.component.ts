@@ -35,7 +35,8 @@ export class BudgetComponent implements OnInit {
         entertainment: new FormControl<number>(this._budgets?.entertainment ?? 0, Validators.required),
         family: new FormControl<number>(this._budgets?.family ?? 0, Validators.required),
         health: new FormControl<number>(this._budgets?.health ?? 0, Validators.required),
-        miscellaneous: new FormControl<number>(this._budgets?.miscellaneous ?? 0, Validators.required)
+        miscellaneous: new FormControl<number>(this._budgets?.miscellaneous ?? 0, Validators.required),
+        savings: new FormControl<number>(this._budgets?.savings ?? 0, Validators.required)
       });
     });
   }
@@ -54,7 +55,8 @@ export class BudgetComponent implements OnInit {
       entertainment: this._budgets?.entertainment,
       family: this._budgets?.family,
       health: this._budgets?.health,
-      miscellaneous: this._budgets?.miscellaneous
+      miscellaneous: this._budgets?.miscellaneous,
+      savings: this._budgets?.savings
     });
   }
 

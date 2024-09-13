@@ -7,4 +7,5 @@ export interface Budget {
     family: number;
     health: number;
     miscellaneous: number;
+    savings: number;
 }

@@ -9,7 +9,8 @@ namespace backend.Models
         Entertainment,
         Family,
         Health,
-        Miscellaneous
+        Miscellaneous,
+        Savings
     }
 
     public static class EnumExtensions {

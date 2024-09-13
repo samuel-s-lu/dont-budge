@@ -14,5 +14,6 @@ namespace backend.Models
         public required int Family { get; set; }
         public required int Health { get; set; }
         public required int Miscellaneous { get; set; }
+        public required int Savings { get; set; }
     }
 }

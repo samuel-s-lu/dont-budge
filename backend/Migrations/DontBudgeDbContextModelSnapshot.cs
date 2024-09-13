@@ -51,6 +51,9 @@ namespace backend.Migrations
                     b.Property<int>("Miscellaneous")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Savings")
+                        .HasColumnType("integer");
+
                     b.HasKey("Income");
 
                     b.ToTable("Budget");

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Transaction } from '../models/transaction.model';
@@ -18,8 +18,13 @@ export class TransactionService {
     return this.transactions$;
   }
 
-  setTransactions(): void {
-    this._http.get<Transaction[]>(this._ApiURL).subscribe((transactions) => {
+  setTransactions(year?: number, month?: number, category?: string): void {
+    let params = new HttpParams();
+    if (year) params.set('year', year.toString());
+    if (month) params.set('month', month.toString());
+    if (category) params.set('category', category);
+
+    this._http.get<Transaction[]>(this._ApiURL, { params }).subscribe((transactions) => {
       this._transactions.next(transactions);
     });
   }

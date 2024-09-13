@@ -11,12 +11,13 @@
               step="100"
               class="budget-number-area"
               min="0"
-              [value]="budgets.length > 0 ? (budgets[0][category]) : 0"
               [formControlName]="category"
             >
           }
           @else {
-            <p class="budget-number-area">{{ budgets.length > 0 ? (budgets[0][category] | currency) : 'N/A' }}</p>
+            <p class="budget-number-area">
+              {{ budgets.length > 0 ? (budgets[0][category] | currency : 'USD' : 'symbol' : '1.0-0') : 'N/A' }}
+            </p>
           }
         </div>
       }

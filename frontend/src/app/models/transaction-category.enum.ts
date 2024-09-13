@@ -6,5 +6,6 @@ export enum TransactionCategory {
     Entertainment = "entertainment",
     Family = "family",
     Health  = "health",
-    Miscellaneous = "miscellaneous"
+    Miscellaneous = "miscellaneous",
+    Savings = "savings"
 }
